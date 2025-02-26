@@ -1,4 +1,8 @@
 import WelcomeMessage from './components/WelcomeMessage';
+import React from 'react';
+import Header from './Header';          
+import MainContent from './MainContent'; 
+import Footer from './Footer';          
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -10,6 +14,9 @@ function App() {
   return (
     <div>
             <WelcomeMessage /> {/* Ensure the component is here */}
+            <Header />         {/* Include the Header component */}
+            <MainContent />    {/* Include the MainContent component */}
+            <Footer />         {/* Include the Footer component */}
         </div>
     );
   }
