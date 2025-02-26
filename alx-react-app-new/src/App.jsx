@@ -4,6 +4,7 @@ import Header from './Header';
 import MainContent from './MainContent'; 
 import Footer from './Footer';          
 import UserProfile from './components/UserProfile';
+import Counter from './components/Counter';  // Import the Counter component
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -17,6 +18,7 @@ function App() {
             <WelcomeMessage /> {/* Ensure the component is here */}
             <Header />         {/* Include the Header component */}
             <MainContent />    {/* Include the MainContent component */}
+            
             <Footer />         {/* Include the Footer component */}
             <h1>User Information</h1>
       {/* Use UserProfile component with props */}
@@ -30,6 +32,8 @@ function App() {
         age="30" 
         bio="Avid traveler and foodie" 
       />
+      <h1>React Counter Application</h1>
+      <Counter /> {/* Add the Counter component here */}
         </div>
     );
   }
