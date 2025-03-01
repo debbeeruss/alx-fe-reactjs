@@ -1,17 +1,40 @@
-// src/components/Navbar.jsx
-
-import { Link } from 'react-router-dom';
+/import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <div style={{ padding: '10px', backgroundColor: '#333', color: 'white' }}>
-      <nav>
-        <Link to="/" style={{ color: 'white', margin: '0 10px' }}>Home</Link>
-        <Link to="/about" style={{ color: 'white', margin: '0 10px' }}>About</Link>
-        <Link to="/services" style={{ color: 'white', margin: '0 10px' }}>Services</Link>
-        <Link to="/contact" style={{ color: 'white', margin: '0 10px' }}>Contact</Link>
-      </nav>
-    </div>
+    <nav 
+      style={{
+        padding: '10px',
+        background: '#333',
+        color: 'white',
+        display: 'flex',           // Flexbox layout
+        justifyContent: 'center',  // Center items horizontally
+        alignItems: 'center'       // Align items vertically in the center
+      }}
+    >
+      <ul 
+        style={{
+          listStyle: 'none',
+          display: 'flex',
+          gap: '15px',
+          margin: 0,  // Remove default margin
+          padding: 0   // Remove default padding
+        }}
+      >
+        <li>
+          <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
+        </li>
+        <li>
+          <Link to="/about" style={{ color: 'white', textDecoration: 'none' }}>About</Link>
+        </li>
+        <li>
+          <Link to="/services" style={{ color: 'white', textDecoration: 'none' }}>Services</Link>
+        </li>
+        <li>
+          <Link to="/contact" style={{ color: 'white', textDecoration: 'none' }}>Contact</Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
