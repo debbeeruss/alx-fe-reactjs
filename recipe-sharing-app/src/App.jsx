@@ -1,3 +1,6 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RecipeDetails from './RecipeDetails';
+
 import React from 'react';
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
@@ -15,6 +18,13 @@ function App() {
       <h1>Recipe Sharing App</h1>
       <AddRecipeForm />
       <RecipeList />
+      <Router>
+      <Routes>
+        {/* Route to view individual recipe */}
+        <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+        {/* Other routes */}
+      </Routes>
+    </Router>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
