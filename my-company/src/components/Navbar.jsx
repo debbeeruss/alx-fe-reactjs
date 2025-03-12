@@ -6,6 +6,7 @@ function Navbar() {
       style={{
         padding: '10px',
         background: '#333',
+        backgroundColor:
         color: 'white',
         display: 'flex',           // Flexbox layout
         justifyContent: 'center',  // Center items horizontally

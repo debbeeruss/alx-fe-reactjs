@@ -1,3 +1,5 @@
+import RegistrationForm from "./components/RegistrationForm";
+import FormikForm from "./components/formikForm";
 import WelcomeMessage from './components/WelcomeMessage';
 import React from 'react';
 import Header from './Header';          
@@ -14,6 +16,11 @@ function App() {
 
   return (
     <div>
+      <h1>Controlled Form</h1>
+      <RegistrationForm />
+
+      <h1>Formik Form</h1>
+      <FormikForm />
             <WelcomeMessage /> {/* Ensure the component is here */}
             <Header />         {/* Include the Header component */}
             <MainContent />    {/* Include the MainContent component */}
