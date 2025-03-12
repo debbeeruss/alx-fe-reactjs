@@ -1,5 +1,5 @@
-import RegistrationForm from "./components/RegistrationForm";
-import FormikForm from "./components/formikForm";
+import RegistrationForm from "../../form-handling-react/src/components/RegistrationForm";
+import FormikForm from "../../form-handling-react/src/components/formikForm";
 import WelcomeMessage from './components/WelcomeMessage';
 import React from 'react';
 import Header from './Header';          
