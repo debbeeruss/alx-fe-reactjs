@@ -1,28 +1,18 @@
 import { useState } from "react";
 
 function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
+  // Separate state variables for each field
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  // Handle input change
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  // Form validation
+  // Form validation function
   const validate = () => {
     let newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
     return newErrors;
   };
 
@@ -33,7 +23,7 @@ function RegistrationForm() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      console.log("Form submitted successfully:", formData);
+      console.log("Form submitted successfully:", { username, email, password });
       setErrors({});
     }
   };
@@ -47,8 +37,8 @@ function RegistrationForm() {
           <input
             type="text"
             name="username"
-            value={formData.username}
-            onChange={handleChange}
+            value={username} // <-- Explicitly referencing individual state
+            onChange={(e) => setUsername(e.target.value)}
             className="w-full p-2 border rounded"
           />
           {errors.username && <p className="text-red-500">{errors.username}</p>}
@@ -59,8 +49,8 @@ function RegistrationForm() {
           <input
             type="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email} // <-- Explicitly referencing individual state
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full p-2 border rounded"
           />
           {errors.email && <p className="text-red-500">{errors.email}</p>}
@@ -71,8 +61,8 @@ function RegistrationForm() {
           <input
             type="password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password} // <-- Explicitly referencing individual state
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full p-2 border rounded"
           />
           {errors.password && <p className="text-red-500">{errors.password}</p>}
