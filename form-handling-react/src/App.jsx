@@ -1,6 +1,6 @@
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import RegistrationForm from "./components/RegistrationForm";
-import FormikForm from "./components/formikForm";
-
+import FormikForm from "./components/FormikForm";
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -11,12 +11,21 @@ function App() {
 
   return (
     <>
-      <div>
-      <h1>Controlled Form</h1>
-      <RegistrationForm />
+    <Router>
+      <div className="text-center p-6">
+        <h1 className="text-3xl font-bold text-blue-700">User Registration</h1>
+        <nav className="my-4">
+          <Link to="/controlled" className="mr-4 text-blue-500">Controlled Form</Link>
+          <Link to="/formik" className="text-green-500">Formik Form</Link>
+        </nav>
 
-      <h1>Formik Form</h1>
-      <FormikForm />
+        <Routes>
+          <Route path="/controlled" element={<RegistrationForm />} />
+          <Route path="/formik" element={<FormikForm />} />
+        </Routes>
+      </div>
+    </Router>
+      <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
