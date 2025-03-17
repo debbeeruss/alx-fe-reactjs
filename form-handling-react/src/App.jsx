@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import RegistrationForm from "./components/RegistrationForm";
-import FormikForm from "./components/FormikForm";
+import FormikForm from "./components/formikForm";
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
