@@ -1,14 +1,16 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
-import HomePage from "./components/HomePage"; // Added import
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import HomePage from "./components/HomePage"; 
+import RecipeDetail from "./components/RecipeDetail";
 
 function App() {
   const [count, setCount] = useState(0);
-  
+
   return (
-    <>
+    <Router>
       <div className="text-center text-2xl text-blue-500 font-bold mt-10">
         Welcome to the Recipe Sharing Platform! 🚀
         <a href="https://vite.dev" target="_blank">
@@ -18,6 +20,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+      
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
@@ -31,9 +34,12 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
 
-      {/* Added HomePage component */}
-      <HomePage />
-    </>
+      {/* React Router for navigation */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
   );
 }
 
