@@ -1,15 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import HomePage from "./components/HomePage"; // Added import
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0);
+  
   return (
     <>
       <div className="text-center text-2xl text-blue-500 font-bold mt-10">
-      Welcome to the Recipe Sharing Platform! 🚀
+        Welcome to the Recipe Sharing Platform! 🚀
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -29,8 +30,11 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      {/* Added HomePage component */}
+      <HomePage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
