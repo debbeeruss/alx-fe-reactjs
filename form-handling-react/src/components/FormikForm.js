@@ -2,7 +2,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 function FormikForm() {
-  // Validation schema using Yup
   const validationSchema = Yup.object({
     username: Yup.string().required("Username is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -22,28 +21,24 @@ function FormikForm() {
       >
         {({ isSubmitting }) => (
           <Form className="space-y-4">
-            {/* Username Field */}
             <div>
               <label className="block text-gray-700">Username</label>
               <Field type="text" name="username" className="w-full p-2 border rounded" />
               <ErrorMessage name="username" component="p" className="text-red-500" />
             </div>
 
-            {/* Email Field */}
             <div>
               <label className="block text-gray-700">Email</label>
               <Field type="email" name="email" className="w-full p-2 border rounded" />
               <ErrorMessage name="email" component="p" className="text-red-500" />
             </div>
 
-            {/* Password Field */}
             <div>
               <label className="block text-gray-700">Password</label>
               <Field type="password" name="password" className="w-full p-2 border rounded" />
               <ErrorMessage name="password" component="p" className="text-red-500" />
             </div>
 
-            {/* Submit Button */}
             <button type="submit" disabled={isSubmitting} className="bg-blue-500 text-white px-4 py-2 rounded">
               {isSubmitting ? "Submitting..." : "Register"}
             </button>
