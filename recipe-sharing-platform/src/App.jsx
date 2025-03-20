@@ -4,7 +4,8 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import HomePage from "./components/HomePage";
-import RecipeDetail from "./components/RecipeDetail";
+import RecipeList from './components/RecipeList';
+import RecipeDetail from "./components/RecipeDetails";
 import AddRecipeForm from "./components/AddRecipeForm"; // ✅ Import AddRecipeForm
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/recipe/:id" element={<RecipeDetail />} />
         <Route path="/add-recipe" element={<AddRecipeForm />} /> {/* ✅ Added Route */}
+        <Route path="/" element={<RecipeList />} />
+        <Route path="/recipe/:id" element={<RecipeDetails />} />
+
       </Routes>
     </Router>
   );
