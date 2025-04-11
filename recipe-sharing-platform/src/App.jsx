@@ -5,7 +5,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import HomePage from "./components/HomePage";
 import RecipeList from './components/RecipeList';
-import RecipeDetail from "./components/RecipeDetails";
+import RecipeDetail from "./components/RecipeDetail";
 import AddRecipeForm from "./components/AddRecipeForm"; // ✅ Import AddRecipeForm
 
 function App() {
