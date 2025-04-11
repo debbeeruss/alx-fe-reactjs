@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { searchUsers } from '../services/githubService';
+import { fetchUserData, searchUsers } from '../services/githubService';
 
 function Search() {
   const [username, setUsername] = useState('');
   const [location, setLocation] = useState('');
   const [minRepos, setMinRepos] = useState('');
-  const [users, setUsers] = useState([]);
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -13,11 +13,18 @@ function Search() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    setUsers([]);
+    setResults([]);
 
     try {
-      const response = await searchUsers({ username, location, minRepos });
-      setUsers(response.data.items);
+      if (location || minRepos) {
+        // Advanced search
+        const response = await searchUsers({ username, location, minRepos });
+        setResults(response.data.items);
+      } else {
+        // Basic search
+        const response = await fetchUserData(username);
+        setResults([response.data]); // Wrap in array for consistency
+      }
     } catch (err) {
       setError("Looks like we cant find the user");
     } finally {
@@ -33,21 +40,21 @@ function Search() {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="border px-4 py-2 rounded-md col-span-1"
+          className="border px-4 py-2 rounded-md"
         />
         <input
           type="text"
-          placeholder="Location"
+          placeholder="Location (optional)"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className="border px-4 py-2 rounded-md col-span-1"
+          className="border px-4 py-2 rounded-md"
         />
         <input
           type="number"
-          placeholder="Min Repos"
+          placeholder="Min Repos (optional)"
           value={minRepos}
           onChange={(e) => setMinRepos(e.target.value)}
-          className="border px-4 py-2 rounded-md col-span-1"
+          className="border px-4 py-2 rounded-md"
         />
         <button
           type="submit"
@@ -61,13 +68,14 @@ function Search() {
         {loading && <p className="text-gray-500">Loading...</p>}
         {error && <p className="text-red-500">{error}</p>}
 
-        {users.length > 0 && (
+        {results.length > 0 && (
           <ul className="space-y-4">
-            {users.map((user) => (
+            {results.map((user) => (
               <li key={user.id} className="flex items-center gap-4 p-4 bg-gray-100 rounded-md">
                 <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
                 <div>
                   <h3 className="font-bold text-lg">{user.login}</h3>
+                  {user.location && <p className="text-sm text-gray-600">📍 {user.location}</p>}
                   <p>
                     <a
                       href={user.html_url}
@@ -89,5 +97,3 @@ function Search() {
 }
 
 export default Search;
-
-    
