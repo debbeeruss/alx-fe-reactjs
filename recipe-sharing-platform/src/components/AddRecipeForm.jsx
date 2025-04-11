@@ -5,14 +5,14 @@ const AddRecipeForm = () => {
   const addRecipe = useRecipeStore((state) => state.addRecipe);
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
-  const [instructions, setInstructions] = useState('');
+  const [steps, setSteps] = useState(''); // Changed from instructions to steps
   const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // Front-end validation
-    if (!title || !ingredients || !instructions) {
+    if (!title || !ingredients || !steps) {
       setError('All fields are required');
       return;
     }
@@ -23,17 +23,19 @@ const AddRecipeForm = () => {
       return;
     }
 
+    const stepsArray = steps.split('\n').map((step) => step.trim()); // Split steps into array
+
     addRecipe({
       id: Date.now(),
       title,
       ingredients: ingredientsArray,
-      instructions: instructions.split('\n').map((step) => step.trim()),
+      steps: stepsArray, // Changed from instructions to steps
     });
 
     // Reset form fields and error message
     setTitle('');
     setIngredients('');
-    setInstructions('');
+    setSteps(''); // Reset steps as well
     setError('');
   };
 
@@ -60,9 +62,9 @@ const AddRecipeForm = () => {
       />
 
       <textarea
-        value={instructions}
-        onChange={(e) => setInstructions(e.target.value)}
-        placeholder="Instructions (each step on a new line)"
+        value={steps}
+        onChange={(e) => setSteps(e.target.value)} // Update to setSteps
+        placeholder="Steps (each step on a new line)"
         className="border p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         rows="4"
       />
