@@ -1,52 +1,76 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+// src/components/FormikForm.jsx
+import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-function FormikForm() {
-  const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+const FormikForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      username: Yup.string().required('Username is required'),
+      email: Yup.string().email('Invalid email address').required('Email is required'),
+      password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+    }),
+    onSubmit: (values) => {
+      // Simulate API call
+      console.log('Form Submitted:', values);
+    },
   });
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Register with Formik</h2>
-      <Formik
-        initialValues={{ username: "", email: "", password: "" }}
-        validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log("Form submitted:", values);
-          setSubmitting(false);
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form className="space-y-4">
-            <div>
-              <label className="block text-gray-700">Username</label>
-              <Field type="text" name="username" className="w-full p-2 border rounded" />
-              <ErrorMessage name="username" component="p" className="text-red-500" />
-            </div>
+    <form onSubmit={formik.handleSubmit}>
+      <div>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.username}
+        />
+        {formik.touched.username && formik.errors.username ? (
+          <div>{formik.errors.username}</div>
+        ) : null}
+      </div>
 
-            <div>
-              <label className="block text-gray-700">Email</label>
-              <Field type="email" name="email" className="w-full p-2 border rounded" />
-              <ErrorMessage name="email" component="p" className="text-red-500" />
-            </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.email}
+        />
+        {formik.touched.email && formik.errors.email ? (
+          <div>{formik.errors.email}</div>
+        ) : null}
+      </div>
 
-            <div>
-              <label className="block text-gray-700">Password</label>
-              <Field type="password" name="password" className="w-full p-2 border rounded" />
-              <ErrorMessage name="password" component="p" className="text-red-500" />
-            </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password}
+        />
+        {formik.touched.password && formik.errors.password ? (
+          <div>{formik.errors.password}</div>
+        ) : null}
+      </div>
 
-            <button type="submit" disabled={isSubmitting} className="bg-blue-500 text-white px-4 py-2 rounded">
-              {isSubmitting ? "Submitting..." : "Register"}
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+      <button type="submit">Register</button>
+    </form>
   );
-}
+};
 
 export default FormikForm;
